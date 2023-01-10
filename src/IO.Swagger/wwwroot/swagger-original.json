@@ -1,0 +1,422 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "Stundenplan - OpenAPI 3.0",
+    "description" : "Dieses Dokument stellt die Backend-API des Stundenplan Tools dar. Es ermöglicht den einfachen Zugriff vom Frontend auf die notwendigen entitäten um die Funktionalität des Stundenplan Tools zu verwenden. Weiter können dieselben Informationen auch für Drittanwendungen verwendet werden.",
+    "termsOfService" : "http://swagger.io/terms/",
+    "contact" : {
+      "email" : "angelo.conconi@stud.hslu.ch"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version" : "1.0.11"
+  },
+  "externalDocs" : {
+    "description" : "Siehe Projektdokumentation in Moodle",
+    "url" : "http://moodle.bfh.ch"
+  },
+  "servers" : [ {
+    "url" : "https://stundenplan-api.azurewebsites.com/"
+  } ],
+  "tags" : [ {
+    "name" : "Klasse",
+    "description" : "Verwaltung und Zuweisung der Klassen",
+    "externalDocs" : {
+      "description" : "Find out more",
+      "url" : "http://swagger.io"
+    }
+  }, {
+    "name" : "Kurse",
+    "description" : "Verwaltung und Zuweisung der Kurse",
+    "externalDocs" : {
+      "description" : "Find out more",
+      "url" : "http://swagger.io"
+    }
+  }, {
+    "name" : "Stundenplan",
+    "description" : "Verwaltung und Zuweisung des Stundenplanes",
+    "externalDocs" : {
+      "description" : "Find out more",
+      "url" : "http://swagger.io"
+    }
+  } ],
+  "paths" : {
+    "/Klasse" : {
+      "get" : {
+        "tags" : [ "Klasse" ],
+        "summary" : "Abfragen",
+        "description" : "Um eine bestehende Klasse aus der Datenbank zu erhalten muss die entsprechende ID mitgeliefert werden",
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Class"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Klasse" ],
+        "summary" : "Aktualisieren",
+        "description" : "Um eine bestehnde Klasse zu aktualisieren muss die entsprechende ID mitgeliefert werden",
+        "requestBody" : {
+          "description" : "Update einer existierenden Klasse in der Schule",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Class"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Class"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Class not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Klasse" ],
+        "summary" : "Erstellen",
+        "description" : "Erstellt eine neue Klasse in der Datenbank",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Class"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Class"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Klasse" ],
+        "summary" : "Löschen",
+        "description" : "löscht eine Klasse",
+        "parameters" : [ {
+          "name" : "classID",
+          "in" : "header",
+          "description" : "",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid Class ID"
+          }
+        }
+      }
+    },
+    "/Kurse" : {
+      "get" : {
+        "tags" : [ "Kurse" ],
+        "summary" : "Abfragen",
+        "description" : "Um eine bestehende Klasse aus der Datenbank zu erhalten muss die entsprechende ID mitgeliefert werden",
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Kurse" ],
+        "summary" : "Aktualisieren",
+        "description" : "Um einen bestehenden Kurs zu aktualisieren muss die entsprechende ID mitgeliefert werden",
+        "requestBody" : {
+          "description" : "Update eines existierenden Kurses in der Schule",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Course"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Course"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Class not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Kurse" ],
+        "summary" : "Erstellen",
+        "description" : "Erstellt eine neue Klasse in der Datenbank",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Class"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Class"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Kurse" ],
+        "summary" : "Löschen",
+        "description" : "löscht eine Klasse",
+        "parameters" : [ {
+          "name" : "classID",
+          "in" : "header",
+          "description" : "",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid Class ID"
+          }
+        }
+      }
+    },
+    "/Stundenplan" : {
+      "get" : {
+        "tags" : [ "Stundenplan" ],
+        "summary" : "Abfragen",
+        "description" : "Um eine bestehende Klasse aus der Datenbank zu erhalten muss die entsprechende ID mitgeliefert werden",
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Class"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Stundenplan" ],
+        "summary" : "Aktualisieren",
+        "description" : "Um eine bestehnde Klasse zu aktualisieren muss die entsprechende ID mitgeliefert werden",
+        "requestBody" : {
+          "description" : "Update einer existierenden Klasse in der Schule",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Class"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Class"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Class not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Stundenplan" ],
+        "summary" : "Erstellen",
+        "description" : "Erstellt eine neue Klasse in der Datenbank",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Class"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Class"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Invalid input"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Stundenplan" ],
+        "summary" : "Löschen",
+        "description" : "löscht eine Klasse",
+        "parameters" : [ {
+          "name" : "classID",
+          "in" : "header",
+          "description" : "",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid Class ID"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Class" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64",
+            "example" : 10
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "198772"
+          },
+          "startDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "endDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "students" : {
+            "type" : "array",
+            "description" : "Auflistung aller Studenten",
+            "example" : "angelo.conconi@stud.hslu.ch",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "example" : {
+          "endDate" : "2000-01-23T04:56:07.000+00:00",
+          "description" : "198772",
+          "students" : "angelo.conconi@stud.hslu.ch",
+          "id" : 10,
+          "startDate" : "2000-01-23T04:56:07.000+00:00"
+        }
+      },
+      "Course" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64",
+            "example" : 12
+          }
+        },
+        "example" : {
+          "id" : 12
+        }
+      }
+    }
+  }
+}
