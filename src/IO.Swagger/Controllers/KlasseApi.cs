@@ -60,7 +60,7 @@ namespace IO.Swagger.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(ModelClass));
             string exampleJson = null;
-            exampleJson = "{\n  \"endDate\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"description\" : \"198772\",\n  \"students\" : \"angelo.conconi@stud.hslu.ch\",\n  \"id\" : 10,\n  \"startDate\" : \"2000-01-23T04:56:07.000+00:00\"\n}";
+            exampleJson = "{\n  \"endDate\" : \"2000-01-23T04:56:07.000+00:00\",\n  \"description\" : \"198772\",\n  \"students\" : [\"angelo.conconi@stud.hslu.ch\", \"cedric.mory@stud.hslu.ch\", \"tobias.vonrotz@stud.hslu.ch\", \"michael.gaupp@bfh.stud.ch\"],\n  \"id\" : 10,\n  \"startDate\" : \"2000-01-23T04:56:07.000+00:00\"\n}";
             
                         var example = exampleJson != null
                         ? JsonConvert.DeserializeObject<ModelClass>(exampleJson)
